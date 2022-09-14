@@ -1,7 +1,7 @@
-{% extends 'web/base.html' %}
+{% include 'web/header.html' %}
 {% load static %}
 
-{% block content %}
+
                 <div class="tab_content">
                     <div id="first-tab" class="tab_pane active">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -43,41 +43,27 @@
                           <div class="container-fluid">
                             <div class="row">
                               <div class="d-flex flex-column align-items-center">
-                                <img src="{% static  './images/Group 4.png' %}" alt="group" class="logo-brand">
+                                <img src="{% static  'images/Group 4.png' %}" alt="group" class="logo-brand">
                                 <h1>"S" our gear-production philosophy</h1>
                                 <h4>歯.車.理</h4>
                                 <h4 class="text-japanese">人気商品 ギア製作理念  人気商品 ギア製作理念 </h4>
                               </div>
                             </div>
                           </div>
+
                           <div class="container-fluid bg-img">
                             <div class="container">
-                              <div class="row px-4">
-                                <img class="top-1-brand image" src="{% static   './images/1 (2).png' %}" alt="brand">
+                              {% for  brand in  brand %}
+                              <div class="row px-4  parent-img">
+                                <img class="top-1-brand image" src="{{brand.image.url}}" alt="brand">
+                                <a class="s-air-link" href="S-air.html"><i>View more</i></a>
                               </div>
+                              {% endfor %}
                             </div>
                           </div>
-                          <div class="container-fluid bg-img">
-                            <div class="container">
-                              <div class="row px-4">
-                                <img class="slash-image image" src="{% static  './images/2 (1).png' %}" alt="brand">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="container-fluid bg-img">
-                            <div class="container">
-                              <div class="row px-4">
-                                <img class="s-heat-image image" src="{% static   './images/Group -2@2x.png' %}" alt="brand">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="container-fluid bg-img">
-                            <div class="container">
-                              <div class="row px-4">
-                                <img class="s-air-image image" src="{% static  'images/Group -3@2x.png' %}" alt="brand">
-                              </div>
-                            </div>
-                            </div>
+                          
+                          
+                          
                           <div class="container-fluid">
                             <div class="row">
                               <div class="d-flex align-items-center flex-column">
@@ -94,7 +80,7 @@
                                 <div class="owl-carousel owl-theme">
                                   <div class="item tech-item">
                                     <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static   './images/function-logo-3@2x.png' %}" alt="function">
+                                      <img src="{% static   'images/function-logo-3@2x.png' %}" alt="function">
                                       <h4>BOUNDY STRETCH</h4>
                                       <p>Lorem, ipsum dolor.</p>
                                       <p>Lorem, ipsum dolor.</p>
@@ -102,7 +88,7 @@
                                   </div>
                                   <div class="item tech-item">
                                     <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static   './images/function-logo-3@2x.png' %}" alt="function">
+                                      <img src="{% static   'images/function-logo-3@2x.png' %}" alt="function">
                                       <h4>BOUNDY STRETCH</h4>
                                       <p>Lorem, ipsum dolor.</p>
                                       <p>Lorem, ipsum dolor.</p>
@@ -110,7 +96,7 @@
                                   </div>
                                   <div class="item tech-item">
                                     <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static  './images/function-logo-3@2x.png' %}" alt="function">
+                                      <img src="{% static  'images/function-logo-3@2x.png' %}" alt="function">
                                       <h4>BOUNDY STRETCH</h4>
                                       <p>Lorem, ipsum dolor.</p>
                                       <p>Lorem, ipsum dolor.</p>
@@ -118,7 +104,7 @@
                                   </div>
                                   <div class="item tech-item">
                                     <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static  './images/function-logo-3@2x.png' %}" alt="function">
+                                      <img src="{% static  'images/function-logo-3@2x.png' %}" alt="function">
                                       <h4>BOUNDY STRETCH</h4>
                                       <p>Lorem, ipsum dolor.</p>
                                       <p>Lorem, ipsum dolor.</p>
@@ -138,11 +124,11 @@
                         <div class="row">
                           <div class="d-flex flex-container">
                             <div class="flex-child">
-                              <img src="{% static  './images/__00_TOP-shinmen.jpg' %}" alt="shinmen">
+                              <img src="{% static  'images/__00_TOP-shinmen.jpg' %}" alt="shinmen">
                               <p class="sub-child">2022 SPRING / SUMMER</p>
                             </div>
                             <div class="flex-child">
-                              <img src="{% static  './images/__00_TOP_shinmen_2.jpg' %}" alt="shinmen">
+                              <img src="{% static  'images/__00_TOP_shinmen_2.jpg' %}" alt="shinmen">
                               <P class="sub-child">2021-2022AUTUMN / WINTER</P>
                             </div>
                           </div>
@@ -152,16 +138,7 @@
                           </div>
                         </div>
                       </section>
-                      <section class="footer">
-                        <div class="news d-flex flex-column">
-                          <p class="news-one">2022.00.00 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>></p>
-                          <p class="news-two">2022.00.00 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>></p>
-                          <p class="news-three">2022.00.00 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>></p>
-                          <div class="view-link">
-                            <a class="link-page" href="#"><i>View more</i><span class="right-arrow">></span></a>
-                          </div>
-                        </div>
+                    
                         
                         
-
-                        {% endblock content %}
+{% include 'web/home-footer.html' %}

@@ -18,6 +18,10 @@ p {
     background-color: #0f0f0f !important;
     padding-top: 10px;
     padding-bottom: 10px;
+    /* background-image: url(../images/Group\ 94@2x.png); */
+    background-repeat: no-repeat;
+    background-position: top -27px right -92px;
+    background-size: 400% 29rem;
 }
 
 .nav-link {
@@ -165,7 +169,7 @@ p {
     margin: 10px;
 }
 
-.brands .flex-container .view-more a {
+.brands .view-more a {
     display: inline-block;
     padding: 15px 35px;
     background-color: #ffc801;
@@ -183,6 +187,7 @@ p {
 .card {
     background-color: #000;
     border-radius: inherit;
+    color: #fff;
 }
 
 .card .flex-container {
@@ -319,6 +324,23 @@ p {
     object-fit: contain;
 }
 
+.brands .parent-img {
+    position: relative;
+}
+
+.brands .parent-img .s-air-link {
+    position: absolute;
+    left: 83%;
+    top: 84.7%;
+    text-decoration: none;
+    background-color: #fff;
+    width: 189px;
+    color: #ffc107;
+    padding: 14.5px 40px;
+    font-size: 22px;
+    display: inline-block;
+}
+
 /* Second tab */
 .head {
     background-image: url(../images/210622F_IH_0794.png);
@@ -354,7 +376,7 @@ p {
 }
 
 .brands {
-    background-color: #101010;
+    background-color: #0e0e0e;
     color: #fff;
 }
 
@@ -404,4 +426,224 @@ p {
 
 .brands .border-line {
     border-bottom: 2px solid #ffffff7d;
+}
+
+/* >>>>> S-AIR.HTML PAGE CSS START FROM HERE <<<<<< */
+
+.tab_pane .top {
+    border-top: 2px solid #ffffff7d;
+}
+
+.tab_pane .bg-color {
+    background-color: #101010;
+    color: #fff;
+}
+
+.tab_pane .item-carousel {
+    height: 90vh;
+    width: 100vw;
+}
+
+.tab_pane .item-carousel .col-lg-4:nth-of-type(odd) .carousel-img {
+    opacity: 0.5;
+}
+
+.tab_pane .item-carousel .col-lg-4:nth-of-type(even) {
+    background-image: url(../images/F_IH_3872@2x.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* .tab_pane .item-carousel:nth-of-type(1) .col-lg-4:nth-of-type(even) {
+    background-image: url(../images/F_IH_5026.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.tab_pane .item-carousel:nth-of-type(2) .col-lg-4:nth-of-type(even) {
+    background-image: url(../images/F_IH_5026.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.tab_pane .item-carousel:nth-of-type(3) .col-lg-4:nth-of-type(even) {
+    background-image: url(../images/F_IH_4914.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+} */
+
+.tab_pane .item-carousel .height {
+    height: 150px;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    right: 16%;
+}
+
+.tab_pane .item-carousel .height .carousel-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.brands .image-series {
+    height: 40px; 
+}
+
+.brands .series {
+    padding-top: 100px;
+} 
+
+.brands .image-series img {
+    height: 100%;
+}
+
+.brands .banner {
+    height: 200px;
+    width: 100%; 
+}
+
+.brands .banner .banner-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.brands .col-4 .brand-image {
+    height: 560px;
+    width: 100%;
+}
+
+.brands .col-4 .brand-image .img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.brands .col-8 .heading {
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.brands .col-8 .serial-name {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.brands .col-8 .serial-detail {
+    font-size: 20px;
+}
+
+.brands .fluid-container {
+    background-image: url(../images/Group\ 94@2x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.brands .fluid-container .container .image {
+    height: 90%;
+    width: 100%
+}
+
+.brands .fluid-container .container .image .img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.brands .top-line {
+    border-top: 2px solid #ffffff7d;
+}
+
+.brands .top-line .view-detail {
+    text-decoration: none;
+    background-color: initial;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 5px 15px;
+    display: inline-block;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.brands .top-line .view-detail:hover {
+    color: initial;
+    background-color: #fff;
+    transition-duration: 0.5s;
+}
+
+.brands .top-line .view-detail .plus-sign {
+    font-size: 22px;
+    display: inline-block;
+    font-weight: lighter;
+
+}
+
+.tab_content .Catalogue {
+    background-color: #000;
+    color: #fff;
+}
+
+.tab_content .Catalogue .image-series {
+    height: 40px;
+}
+
+.tab_content .Catalogue .image-series .img {
+    height: 100%;
+}
+
+.tab_content .Catalogue .text-center {
+    border-bottom: 2px solid #ffffff7d;
+}
+
+.tab_content .Catalogue .view-more {
+    text-align: center;
+}
+
+.tab_content .Catalogue .view-more .link-more {
+    background-color: #ffc703;
+    color: #000;
+    padding: 12px 10px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 20px;
+    padding-left: 40px;
+}
+
+.tab_content .Catalogue .view-more .link-more .plus-sign {
+    padding-left: 10px;
+}
+
+/* catalogue page css start from here */
+
+.card .page-link .product {
+    text-decoration: none;
+    background-color: #ffc801;
+    color: #000;
+    padding: 20px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0px 4%;
+    padding-left: 55px;
+}
+
+.card .page-link .product .view-more {
+    padding-left: 30px;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.brands .catalogue-banner {
+    height: 300px;
+    width: 100%; 
+    background-image: url(../images/Group_107.png);
+    background-position: center;
+    background-repeat: no-repeat;
 }

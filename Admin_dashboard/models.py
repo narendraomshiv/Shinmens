@@ -5,6 +5,7 @@ from django.db import models
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , BaseUserManager
+from django.views import View
 
 ########## Custom Model manager ########
 
@@ -93,5 +94,25 @@ class User(AbstractBaseUser):
 
 class SlidersImagesModel(models.Model):
   image  = models.ImageField(null=True, blank=True)
-  date = models.DateField(auto_now_add=True)
+  
+  
+class HomeBrandHeadingsModel(models.Model):
+  headings = models.CharField(max_length=350, null=True, blank=True)
+  description = models.CharField(max_length=500, null=True, blank=True) 
+  other_description = models.CharField(max_length=500, null=True, blank=True) 
+
+
+
+class BrandsModel(models.Model):
+  image = models.ImageField(null=True, blank=True)
+  headings = models.CharField(max_length=350, null=True, blank=True)
+  description = models.CharField(max_length=500, null=True, blank=True) 
+  other_description = models.CharField(max_length=500, null=True, blank=True) 
+
+
+
+class CatalagueModel(models.Model):
+  image = models.ImageField(blank = True, null = True)
+  year = models.CharField(max_length=20, blank = True, null = True)
+  heading = models.CharField(max_length=100, blank = True, null = True)
   

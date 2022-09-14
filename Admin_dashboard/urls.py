@@ -4,7 +4,7 @@ from . import views
 #======#
 urlpatterns = [
     path('', views.adminPanel, name="dashboardHome"),
-    path('admin-login', views.login, name="loginAdmin"),
+    path('admin-login/', views.login, name="loginAdmin"),
     path('user-logout/', views.userlogout, name ='logouts'),
     path('admin-dashboard/delete-user/<int:id>', views.deleteUser, name="deleteUser" ),
     path('admin-add-user', views.AddUser, name="addUser" ),
@@ -16,6 +16,14 @@ urlpatterns = [
     path('add-sliders-images', views.SlidersImagesView.as_view(), name="addSliders"),
     path('edit-sliders-images/<int:id>', views.EditSliderImagesView.as_view(), name="editSlidersImages"),
     path('sliders-images-delete/<int:id>', views.DeleteSlidersImagesView.as_view(), name="DeleteSlidersImages"),
+    path('add-new-brands', views.AddBrandView.as_view(), name="addBrand"),
+    path('brands-details/',views.BrandsDetailsView.as_view(), name="brandDetails"),
+    path('add-new-catalogue', views.AddCatalogueViews.as_view(), name="addCatalogue"),
+    path('catalogue-lists-details/',views.CatalagueListDetailsView.as_view(), name="catalogueDetails"),
+    
+    
+    
+    
     
     
     

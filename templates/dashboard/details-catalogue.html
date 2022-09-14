@@ -5,7 +5,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Total Register User ( {{user_total}} ) </h4>
+      <h4 class="card-title">Lists Of Catalogue Details </h4>
 
       {% for message in messages %}
       <b style="color:#208817; margin-left: 22px;">{{message}}</b>
@@ -18,11 +18,8 @@
             <tr>
               <th>Sr No</th>
 
-              <th>User Name</th>
-
-
-              <th>Phone Number</th>
-              <th> Email</th>
+              <th>Image</th>
+              <th>Years</th>
 
               <th>Action</th>
 
@@ -35,24 +32,15 @@
                 <a href=""> {{forloop.counter}}</a>
               </td>
 
-
-
               <td>
-                {{data.username}}
+                <img src="{{data.image.url}}" style="height: 2in; width:   6cm;" alt="">
               </td>
-
               <td>
-                {{data.phone_number}}
+                {{data.year}}
               </td>
-
-
               <td>
-                {{data.email}}
-              </td>
-
-              <td>
-                <a href="{% url 'editUser' data.id %}" , class="btn btn-outline-success btn-sm">Edit User</a>
-                <a href="{% url 'deleteUser' data.id %}" class="btn btn-outline-danger btn-sm"
+                <a href="{% url 'editSlidersImages' data.id %}" , class="btn btn-outline-success btn-sm">Edit Image</a>
+                <a href="{% url 'DeleteSlidersImages' data.id %}" class="btn btn-outline-danger btn-sm"
                   onclick="return confirm('Are You Sure')">Delete</a>
               </td>
             </tr>

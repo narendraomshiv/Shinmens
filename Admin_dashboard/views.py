@@ -1,3 +1,4 @@
+import re
 from unicodedata import name
 from django import views
 from django.shortcuts import render
@@ -208,7 +209,7 @@ class SlidersImagesView(View):
     def post(self, request):
         data = SlidersImagesModel()
         image  = request.FILES.get('image')
-        print(image)
+       
         data.image = image
         data.save()
         messages.success(request, 'Sliders Image Add  Successfully..!!')
@@ -228,16 +229,70 @@ class EditSliderImagesView(View):
     def post(self, request, id):
         image = request.FILES.get('image')
         date = request.POST.get('date')
-        print(date)
+  
         data = SlidersImagesModel(id=id, image=image, date=date).save()
         messages.success(request, 'Sliders Image Edit  Successfully..!!')
         return redirect('showDetails')
         
 class DeleteSlidersImagesView(View):
     def get(self, request, id):
-        print(id)
+        
         data = SlidersImagesModel.objects.get(id=id)
         data.delete()
         messages.success(request, 'Sliders Image Delete  Successfully..!!')
         return redirect('showDetails')
         
+        
+        
+#==== Brand ======#
+
+class AddBrandView(View):
+    def get(self, request):
+        return render(request, 'dashboard/add-brands.html')       
+    
+    
+    def post(self, request):
+        data = BrandsModel()
+        image = request.FILES.get('image')
+        heading = request.POST.get('brand_headings')
+        description = request.POST.get('description')
+        other_description = request.POST.get('other_description')
+        
+        data.image = image
+        data.headings = heading
+        data.description = description
+        data.other_description = other_description
+        
+        data.save()
+        messages.success(request, 'Brand Added  Successfully..!!')
+        return redirect('brandDetails')
+        
+        
+class BrandsDetailsView(View):
+    def get(self, request):
+        data = BrandsModel.objects.all().order_by('-id')
+        return render(request, 'dashboard/brand-details-page.html', {'page_obj':data})        
+                
+                
+                
+class AddCatalogueViews(View):
+    def get(self, request):
+        return render(request, 'dashboard/add-catalogue.html')
+    def post(self, request):
+        data = CatalagueModel()
+        image = request.FILES.get('image')
+        heading = request.POST.get('heading')
+        year = request.POST.get('years')
+        data.image = image
+        data.heading = heading
+        data.year = year
+        data.save()
+        messages.success(request, 'Catalogue Added  Successfully..!!')
+        return redirect('catalogueDetails')
+class CatalagueListDetailsView(View):
+    def get(self, request):
+        data = CatalagueModel.objects.all().order_by('-id')
+        return render(request, 'dashboard/details-catalogue.html', {'data':data})        
+                
+                
+                        
