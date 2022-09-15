@@ -1,24 +1,24 @@
+from email.mime import image
 import re
+
 from unicodedata import name
+from urllib.request import Request
 from django import views
 from django.shortcuts import render
 from django.views import View
 from .models import *
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate,login as dj_login ,logout
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.http import HttpResponseRedirect,HttpResponse 
 from django.shortcuts import redirect
 # Create your views here.
-
-
-class AdminHomePageView(View):
-        
-    def get(self, request):
-        
+class AdminHomePageView(View):    
+    def get(self, request):    
         return render(request, 'dashboard/index.html')
     
+
 login_required(login_url='admin-login')
 def adminPanel(request):
 
@@ -54,31 +54,33 @@ def adminPanel(request):
     else:
         return redirect('loginAdmin')
 
-
-
-    
-    
-
-
 #=============LOGIN=============
 
-def login(request):
-    if request.method == 'POST':
-        email_id = request.POST.get('email')
-        passwords = request.POST.get('password')
-      
-        user = authenticate(request=request, email=email_id, password=passwords)
-      
+class Login(View):
+    def get(self, request):
+        return render(request, 'dashboard/samples/login.html')
+    def post (self, request, **kwargs):
+     if request.method == "POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password') 
+        print(email)
+        print(password)
+        user = authenticate(request, email = email, password = password)
+        print(user)
         if user is not None:
-            if User.objects.filter(email=email_id,is_superuser=True):
-                dj_login(request, user)
-                return redirect('dashboardHome')
-            else:
-                messages.error(request, 'You Are Not Admin User')    
+            if User.objects.filter(email=email, is_superuser=True):
+                login(request,user)
+            return redirect("dashboardHome")
         else:
-            messages.error(request, 'Invalid Email or Password')
-        
+            messages.error(request, 'You Are Not Admin User')
+     else:
+        messages.error(request,'invalid user email id')
+     return render(request,'dashboard/samples/login.html') 
 
+
+####
+def home(request):
+    return render(request,'web/home.html')
 
     return render(request,'dashboard/samples/login.html')    
 
@@ -193,7 +195,6 @@ def deleteUser(request,id):
 #=========== Show User =======#
 class ShowUserView(View):
     def get(self, request):
-        
         user_data = User.objects.all().order_by("-id") 
         user_total = User.objects.all().count()
         paginator = Paginator(user_data,per_page=10) 
@@ -236,7 +237,6 @@ class EditSliderImagesView(View):
         
 class DeleteSlidersImagesView(View):
     def get(self, request, id):
-        
         data = SlidersImagesModel.objects.get(id=id)
         data.delete()
         messages.success(request, 'Sliders Image Delete  Successfully..!!')
@@ -271,28 +271,173 @@ class AddBrandView(View):
 class BrandsDetailsView(View):
     def get(self, request):
         data = BrandsModel.objects.all().order_by('-id')
-        return render(request, 'dashboard/brand-details-page.html', {'page_obj':data})        
-                
-                
-                
+        return render(request, 'dashboard/brand-details-page.html', {'page_obj':data})  
+
+
+#====== contact Details ===
+    def contactdetails(request):
+        data = ContactModels.objects.all()
+        return render(request, '' ,{'data':data})
+
+#  ===== catalogue views  page ====
 class AddCatalogueViews(View):
     def get(self, request):
         return render(request, 'dashboard/add-catalogue.html')
     def post(self, request):
-        data = CatalagueModel()
+        data = CatalogModel()
         image = request.FILES.get('image')
-        heading = request.POST.get('heading')
-        year = request.POST.get('years')
+        Heading = request.POST.get('Heading')
+        years = request.POST.get('years')
         data.image = image
-        data.heading = heading
-        data.year = year
+        data.Heading = Heading
+        data.years = years
         data.save()
         messages.success(request, 'Catalogue Added  Successfully..!!')
         return redirect('catalogueDetails')
+
+
 class CatalagueListDetailsView(View):
     def get(self, request):
-        data = CatalagueModel.objects.all().order_by('-id')
-        return render(request, 'dashboard/details-catalogue.html', {'data':data})        
+        data = CatalogModel.objects.all()
+        return render(request,'dashboard/details-catalogue.html',{'data':data}) 
+
+
+# Edit Catalague views .
+
+class EditCatalogueView(View):
+    def get(self, request, id):
+        data = CatalogModel.objects.get(pk=id)
+        print(data)
+        return render(request,'dashboard/edit_catalog.html',{'data':data})
+    def post(self,request, id):
+        image = request.FILES.get('image')
+        years = request.POST.get('years')
+        Heading= request.POST.get('Heading')
+        data = CatalogModel(id=id,
+        image = image,
+        years= years, 
+        Heading = Heading).save()
+        return redirect("catalogueDetails")
+
+
+##### Delete Data ...
+       
+class DeleteCatalogView(View):
+    def get(self, request, id):
+        data = CatalogModel.objects.get(id=id)
+        data.delete()
+        messages.success(request, 'Catalog Data Deleted Successfully..!!')
+        return redirect('catalogueDetails')
                 
                 
-                        
+#===== Add Tech Views. ==== 
+class AddTechView(View):
+    def get(self, request):
+        return render(request,'dashboard/add-tech.html')
+        
+    def post(self, request):
+        data = TechPageModel()
+        image = request.FILES.get('image')
+        heading = request.POST.get('heading')
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        data.image = image
+        data.heading = heading
+        data.title = title
+        data.description = description
+        data.save()
+        messages.success(request,'Tech  Added  Successfully..!!')
+        return redirect('techDetails')
+
+
+class TechListDetailsView(View):
+    def get(self, request):
+        data = TechPageModel.objects.all()
+        print(data)
+        return render(request,'dashboard/all-tech-details.html',{'data':data}) 
+
+#======  Edit Tech View pages. ===
+
+class EditTechView(View):
+    def get(self, request, id):
+        data = TechPageModel.objects.get(pk=id)
+        return render(request,'dashboard/edit-tech.html',{'data':data})
+    def post(self,request, id):
+        image = request.FILES.get('image')
+        title = request.POST.get('title')
+        heading = request.POST.get('heading')
+        description = request.POST.get('description')
+        data = TechPageModel(id=id,
+        image = image,
+        title = title,
+        description = description, 
+        heading = heading).save()
+        return redirect("techDetails")
+
+
+# === Delete Tech views .====
+class DeleteTechView(View):
+    def get(self, request, id):
+        data = TechPageModel.objects.get(id=id)
+        data.delete()
+        messages.success(request,'Tech Data Deleted Successfully..!!')
+        return redirect('techDetails')
+
+
+# ======== news page views =====
+
+class AddNewsViews(View):
+    def get(self, request):
+        return render(request, 'dashboard/add-news.html')
+    def post(self, request):
+        data = NewsModel()
+        image = request.FILES.get('image')
+        title = request.POST.get('title')
+        heading = request.POST.get('heading')
+        date = request.POST.get('date')
+        data.image = image
+        data.heading = heading
+        data.date = date
+        data.title = title
+        data.save()
+        messages.success(request, 'News  Added  Successfully..!!')
+        return redirect('newsDetails')
+
+
+
+class NewsDetailsView(View):
+    def get(self, request):
+        data = NewsModel.objects.all()
+        print(data)
+        return render(request,'dashboard/all-new.html',{'data':data}) 
+
+
+
+class EditNewsView(View):
+    def get(self, request, id):
+        data = NewsModel.objects.get(pk=id)
+        return render(request,'dashboard/edit-new.html',{'data':data})
+    def post(self,request, id):
+        image = request.FILES.get('image')
+        title = request.POST.get('title')
+        heading = request.POST.get('heading')
+        date = request.POST.get('date')
+        data = NewsModel(id=id,
+        image = image,
+        title = title,
+        date = date, 
+        heading = heading).save()
+        return redirect("newsDetails")
+
+
+class DeleteNewsviews(View):
+    def get(self, request, id):
+        data = NewsModel.objects.get(id=id)
+        data.delete()
+        messages.success(request,'News Data Deleted Successfully..!!')
+        return redirect('newsDetails')
+
+
+
+
+

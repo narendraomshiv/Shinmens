@@ -1,0 +1,37 @@
+
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+                <div class="tab_content">
+                  <div class="tab_pane">
+                    <section class="container-fluid head tech-head">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="top container">
+                            <p>Top > xxxxxxxxxxxxx </p>
+                          </div>
+                          <div class="brand-img text-center my-5">
+                            <img src="{% static 'images/Group-5.png' %}" alt="brand">
+                          </div>
+                          <div class="heading container text-end" >
+                            <h1>Tech is the source of <br>ultimate usability</h1>
+                            <p class="text-prg">「使える」にとどまらない、より高いパフォーマンスを引出せ</p>
+                            <p class="text-prg">飽くなき追求の一端がここに</p>
+                          </div>
+                          {% for data in data %}
+                          <div class="container d-flex justify-content-between unique-tech py-5" style="padding-top: 10% !important;">
+                              <div class="image col-lg-6">
+                                <img src="{{ data.image.url }}" alt="img" class="img">
+                              </div>
+                              <div class="tech-detail col-lg-6">
+                                  <h1>{{data.title}}</h1>
+                                  <h4>{{data.heading}}</h4>
+                                  <p>{{data.description}}</p>
+                                  <div class="link-tech">
+                                  <a href="#">Product lineup <span class="plus-sign">></span></a>
+                                </div>
+                              </div>
+                          </div>
+                          {% endfor %}
+                       
+{% endblock content %}                    

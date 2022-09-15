@@ -17,19 +17,52 @@
                           </div>
                       </section>
                       <section class="card container-fluid">
-                        {% for data in catalogue %}
                         <div class="row">
                           <div class="d-flex flex-container">
                             <div class="">
                                 <h3 class="">2022</h3>
                                 <h3 class="">SPRING / SUMMER</h3>
-                                <img src="{{ data.image.url }}" alt="shinmen">
+                                <img src="{% static 'images/__00_TOP-shinmen.jpg' %}" alt="shinmen">
                             </div>
-                            
+                            <div class="">
+                                <h3 class="">2021-22</h3>
+                                <h3 class="">AUTUMN / WINTER</h3>
+                                <img src="{% static 'images/__00_TOP_shinmen_2.jpg' %}" alt="shinmen">
+                            </div>
                           </div>
                         </div>
-                        {% endfor %}
-                        
-                        
+                        <div class="row">
+                            <div class="d-flex flex-container">
+                              <div class="">
+                                  <h3 class="">2022</h3>
+                                  <h3 class="">SPRING / SUMMER</h3>
+                                  <img src="{% static 'images/__00_TOP-shinmen.jpg' %}" alt="shinmen">
+                              </div>
+                              <div class="">
+                                  <h3 class="">2021-22</h3>
+                                  <h3 class="">AUTUMN / WINTER</h3>
+                                  <img src="{% static 'images/__00_TOP_shinmen_2.jpg' %}" alt="shinmen">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="d-flex flex-container">
+                              <div class="">
+                                  <h3 class="">2022</h3>
+                                  <h3 class="">SPRING / SUMMER</h3>
+                                  <img src="{% static 'images/__00_TOP-shinmen.jpg' %}" alt="shinmen">
+                              </div>
+                              <div class="">
+                                  <h3 class="">2021-22</h3>
+                                  <h3 class="">AUTUMN / WINTER</h3>
+                                  <img src="{% static 'images/__00_TOP_shinmen_2.jpg' %}" alt="shinmen">
+                              </div>
+                            </div>
+                            <div class="border_bottom mt-5"></div>
+                            <div class="page-link">
+                              <a class="product" href="#">もっとサマー商品<span class="view-more">></span></a>
+                              <a class="product" href="#">さらに秋冬<span class="view-more">></span></a>
+                            </div>
+                          </div>
                       </section>
 {% endblock %}                      

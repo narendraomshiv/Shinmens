@@ -1,0 +1,107 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+            
+<div class="tab_content">
+    <div class="tab_pane">
+        <section class="container-fluid news-head">
+            <div class="row">
+                <div class="col-12 bg-color">
+                    <div class="top container">
+                        <p>Top > xxxxxxxxxxxxx</p>
+                    </div>
+                    <div class="brand-img d-flex justify-content-center my-5">
+                        <div class="news">
+                            <img class="img-news" src=" {% static 'images/Group 107@2x.png' %}" alt="brand">
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs nav-fill" role="tablis" id="myTab">
+                                    <li class="nav-item">
+                                        <a class="nav-link link-nav active" data-bs-toggle="tab" aria-current="page"
+                                            href="#home"> 新製品はこちら</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link link-nav" data-bs-toggle="tab" href="#content"> 新製品はこちら</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link link-nav" data-bs-toggle="tab" href="#about">新製品はこちら</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link link-nav" data-bs-toggle="tab" href="#help">新製品はこちら</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                   
+                                    <div class="tab-pane fade active show" id="home">
+                                        <div class="container">
+                                           
+                                            <div class="row">
+                                                {% for data in data %}
+                                           
+
+         
+                                                <div class="col-12 d-flex justify-content-between">  
+                                                    <div class="first">
+                                                        <div class="image">
+                                                        <img class="img" src="{{ data.image.url }}" alt="">
+                                                            </div>
+                                                            <h2>{{data.title}}</h2>
+                                                            <h1>{{data.date}}</h1>
+                                                            <h3>{{data.heading}}</h3>  
+                                                        </div>
+                                                        </div>
+                                                       
+                                                        {% endfor %}
+                                               
+                                                </div>  
+                                            </div>
+                                            <div class="bottom-line my-5"></div>
+                                            <nav aria-label="...">
+                                                <ul class="pagination justify-content-center">
+                                                  <li class="page-item disabled">
+                                                   
+                                                    <span class="page-link">Previous</span>
+                                                   
+                                                  </li>
+                                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                  <li class="page-item active" aria-current="page">
+                                                    <span class="page-link">2</span>
+                                                  </li>
+                                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                  <li class="page-item">
+                                                    <a class="page-link" href="#">Next</a>
+                                                  </li>
+                                                </ul>
+                                              </nav>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="content">
+                                        <h1>Two</h1>
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus,
+                                            unde.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="about">
+                                        <h1>Three</h1>
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus,
+                                            unde.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="help">
+                                        <h1>Four</h1>
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus,
+                                            unde.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+    </div>
+</div>
+ {% endblock content %}                
+                    

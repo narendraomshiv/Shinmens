@@ -1,7 +1,6 @@
 {% include 'web/header.html' %}
 {% load static %}
 
-
                 <div class="tab_content">
                     <div id="first-tab" class="tab_pane active">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -9,7 +8,7 @@
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#homecarouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 3"></button>
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 3"></button>
                           </div>
                           
@@ -22,13 +21,7 @@
                               
                             </div>
                             {% endfor  %}
-                          
-                           
-                         
-                          
-                        
                           </div>
-                          
                           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
@@ -43,27 +36,26 @@
                           <div class="container-fluid">
                             <div class="row">
                               <div class="d-flex flex-column align-items-center">
-                                <img src="{% static  'images/Group 4.png' %}" alt="group" class="logo-brand">
-                                <h1>"S" our gear-production philosophy</h1>
+                        <h1>"S" our gear-production philosophy</h1>
                                 <h4>歯.車.理</h4>
                                 <h4 class="text-japanese">人気商品 ギア製作理念  人気商品 ギア製作理念 </h4>
                               </div>
                             </div>
                           </div>
-
                           <div class="container-fluid bg-img">
                             <div class="container">
-                              {% for  brand in  brand %}
-                              <div class="row px-4  parent-img">
-                                <img class="top-1-brand image" src="{{brand.image.url}}" alt="brand">
-                                <a class="s-air-link" href="S-air.html"><i>View more</i></a>
+                              <div class="row px-4">
+                                <img class="s-heat-image image" src="{% static   'images/Group -2@2x.png' %}" alt="brand">
                               </div>
-                              {% endfor %}
                             </div>
                           </div>
-                          
-                          
-                          
+                          <div class="container-fluid bg-img">
+                            <div class="container">
+                              <div class="row px-4">
+                                <img class="s-air-image image" src="{% static  'images/Group -3@2x.png' %}" alt="brand">
+                              </div>
+                            </div>
+                            </div>
                           <div class="container-fluid">
                             <div class="row">
                               <div class="d-flex align-items-center flex-column">
@@ -76,47 +68,24 @@
                           </div>
                           <section id="demos">
                             <div class="row">
-                              <div class="large-12 columns">
-                                <div class="owl-carousel owl-theme">
+                              
+                                  {% for data in tech %}
                                   <div class="item tech-item">
                                     <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static   'images/function-logo-3@2x.png' %}" alt="function">
-                                      <h4>BOUNDY STRETCH</h4>
-                                      <p>Lorem, ipsum dolor.</p>
-                                      <p>Lorem, ipsum dolor.</p>
+                                      <img src="{{ data.image.url }}" alt="function">
+                                      <h4>{{data.title}}</h4>
+                                      <p>{{data.heading}}</p>
+                                      <p>{{data.description}}</p>
                                     </div>
                                   </div>
-                                  <div class="item tech-item">
-                                    <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static   'images/function-logo-3@2x.png' %}" alt="function">
-                                      <h4>BOUNDY STRETCH</h4>
-                                      <p>Lorem, ipsum dolor.</p>
-                                      <p>Lorem, ipsum dolor.</p>
-                                    </div>
-                                  </div>
-                                  <div class="item tech-item">
-                                    <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static  'images/function-logo-3@2x.png' %}" alt="function">
-                                      <h4>BOUNDY STRETCH</h4>
-                                      <p>Lorem, ipsum dolor.</p>
-                                      <p>Lorem, ipsum dolor.</p>
-                                    </div>
-                                  </div>
-                                  <div class="item tech-item">
-                                    <div class="d-flex flex-column px-4 py-5">
-                                      <img src="{% static  'images/function-logo-3@2x.png' %}" alt="function">
-                                      <h4>BOUNDY STRETCH</h4>
-                                      <p>Lorem, ipsum dolor.</p>
-                                      <p>Lorem, ipsum dolor.</p>
-                                    </div>
-                                  </div>
+                                  {% endfor %}
                                 </div>
                               </div>
                             </div>
                           </section>
                           <div class="under-line"></div>
                           <div class="view-more text-center">
-                            <a href="#"><i>View more ></i></a>
+                            <a href="{% url 'tech' %}"><i>View more ></i></a>
                           </div>
                         </div>
                       </section>
@@ -134,11 +103,9 @@
                           </div>
                           <div class="border_bottom d-flex"></div>
                           <div class="page-link">
-                            <a href="#">もっと製品を見る ></a>
+                            <a href="{% url 'corporate' %}">もっと製品を見る ></a>
                           </div>
                         </div>
-                      </section>
-                    
-                        
-                        
+                      </section>                      
 {% include 'web/home-footer.html' %}
+
