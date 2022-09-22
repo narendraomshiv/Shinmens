@@ -1,0 +1,74 @@
+
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+<div class="tab_content">
+  <div class="tab_pane">
+    <section class="container-fluid head">
+      <div class="row">
+        <div class="col-12">
+          <div class="top container">
+            <p>Top > xxxxxxxxxxxxx</p>
+          </div>
+          <div class="brand-img text-center my-5">
+            <img src="{% static 'images/Group 4.png' %}" alt="brand">
+          </div>
+          <div class="heading container">
+            <h1>"<span class="color-size">S</span>" THE BRAND</h1>
+            <p class="text-prg">make wearable gear<br>
+              it will be essential for the all workeres<br>
+              NEVER STOP UPGRADING<br>
+              DON'T STAYOUR EVOLUATION
+            </p>
+            <div class="text-prg">
+              ウェアラブル ギアを作る<br>
+              すべての労働者にとって不可欠です<br>
+              アップグレードをやめない<br>
+              進化を止めるな
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="brands">
+      <div class="d-flex container justify-content-evenly py-4">
+        <div class="brands-name">
+          <img class="brand-img" src="{% static 'images/Group 65@2x.png' %}" alt="group">
+        </div>
+        <div class="border-right"></div>
+        <div class="brands-name">
+          <img class="brand-img" src="{% static 'images/Group 58@2x.png' %}" alt="group">
+        </div>
+        <div class="border-right"></div>
+        <div class="brands-name">
+          <img class="brand-img" src="{% static 'images/Group 61@2x.png' %}" alt="group">
+        </div>
+        <div class="border-right"></div>
+        <div class="brands-name">
+          <img class="brand-img" src="{% static 'images/Group 69@2x.png' %}" alt="group">
+        </div>
+      </div>
+    </section>
+    {% for data in brands %}
+    <section class="brand-six brands">
+      <div class="container-fluid bg-img flex-container pt-5">
+        <div class="container">
+          <div class="row px-4 brand parent-img">
+              <img class="top-1-brand" src="{{data.brandname.url}}" alt="brand">
+              <div class="link index-brand">
+                <a class="s-air-link stx-brand index-link" href="/stx-drand-details/"><i>View more</i><span class="right-arrow">></span></a>
+              </div>
+            <div class="text container">
+              {{data.title}}<br>
+              {{data.text}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endfor %}
+
+  </div>
+</div>
+                     
+{% endblock %}

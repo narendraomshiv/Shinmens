@@ -1,37 +1,63 @@
-
-from urllib.robotparser import RequestRate
-from django import views
 from django.shortcuts import render
 from django.views import View
-from django.core.paginator import Paginator
-
-
-from Admin_dashboard.models import*
+import json
+import requests
 
 class HomePageView(View):
     def get(self, request):
-        slider = SlidersImagesModel.objects.all().order_by("-id")
-        brand = BrandsModel.objects.all()
-        data = TechPageModel.objects.all()
-        return render(request,'web/home.html',{'sliders':slider,'brand':brand, 'tech':data})
+        url = "https://shimen.microcms.io/api/v1/top"
+        payload={}
+        headers = {
+        'X-MICROCMS-API-KEY': 'c84e302bd7ce42aeaa3de3f3a8ae5b1a98eb'
+        }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        text_data = response.text
+        json_data = json.loads(text_data)
+        brands = json_data['contents'][0]['brand'][::]
+        tech_carousel = json_data['contents'][0]['tech_carousel'][::]
+        carousel = json_data['contents'][0]['carousel'][::]
+        return render(request, 'web/home.html', {'brands':brands, 'tech_carousel':tech_carousel, 'carousel':carousel})
+
 
 
 class BrandTeamplatesView(View):
     def get(self, request):
-        brand = BrandsModel.objects.all()
-        return render(request, 'web/brand.html',{'brand':brand})
+        url = "https://shimen.microcms.io/api/v1/brand-product"
+        payload={}
+        headers = {
+        'X-MICROCMS-API-KEY': 'c84e302bd7ce42aeaa3de3f3a8ae5b1a98eb'
+        }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        text_data = response.text
+        json_data = json.loads(text_data)
+        brands = json_data['contents'][::]
+        return render(request, 'web/brand-index.html', {'brands':brands})
 
 
 class SAirBrandsView(View):
     def get(self, request):
-        air = SAirModel.objects.all()
-        return render(request,'web/S-air.html',{'air':air})        
+        
+        return render(request,'web/S-air.html',)        
+
+class SheatBrandsView(View):
+    def get(self, request):
+     
+        return render(request,'web/s-heat-details.html')        
           
 
+class SlashBrandsView(View):
+    def get(self, request):
+       
+        return render(request,'web/slash-details.html')        
+                              
+class StxBrandsView(View):
+    def get(self, request):
+        return render(request,'web/stx-details.html')        
+          
 class CataloueView(View):
     def get(self, request):
-        data = CatalogModel.objects.all()
-        return render(request, 'web/catalogue.html',{'catalogue':data})        
+        
+        return render(request, 'web/catalogue.html')        
                               
 
 
@@ -39,20 +65,20 @@ class CataloueView(View):
 
 class TechPageView(View):
     def get(self, request):
-        data = TechPageModel.objects.all()
-        return render(request,'web/tech-index.html', {'data':data})
+       
+        return render(request,'web/tech-index.html')
 
 
 
 class CorporateView(View):
     def get(self, request):
-        data = CorporateModel.objects.all()
-        return render (request,'web/corporate.html',{'data':data})
+       
+        return render (request,'web/corporate.html')
 
 
 
 class NewsView(View):
     def get(self, request):
-        data = NewsModel.objects.all()
-        return render(request,'web/news.html',{'data':data})
+      
+        return render(request,'web/news.html')
        
